@@ -108,10 +108,13 @@ ${agent.name}:`;
 function cleanResponse(response, agentName, otherAgentName) {
     let cleaned = response.trim();
 
+<<<<<<< HEAD
     // Strip thinking blocks that thinking models may emit despite think:false
-    cleaned = cleaned.replace(/<\/think>[\s\S]*?<\/think>/gi, '').trim();
+    cleaned = cleaned.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
 
     // Strip any leading speaker label the model may have emitted anyway
+=======
+>>>>>>> a066c2d30390c45401f006ec488c4c8f5fb4bdfe
     cleaned = cleaned.replace(new RegExp(`^${agentName}\\s*:\\s*`, 'i'), '');
     cleaned = cleaned.replace(new RegExp(`^${otherAgentName}\\s*:\\s*`, 'i'), '');
     cleaned = cleaned.replace(/^(You|Human|User)\s*:\s*/i, '');
