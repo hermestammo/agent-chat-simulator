@@ -44,11 +44,11 @@ ${agent.name}:`;
             model: MODEL,
             prompt,
             stream: false,
+            think: false,
             options: {
                 temperature: 0.5,
                 top_p: 0.85,
                 repeat_penalty: 1.3,
-                // Only stop on clear role-switch markers, not common English words
                 stop: [`\n${otherAgent.name}:`, `\n${agent.name}:`, '\nHuman:', '\nUser:'],
                 num_predict: 120
             }
@@ -72,6 +72,9 @@ ${agent.name}:`;
 
 function cleanResponse(response, agentName, otherAgentName) {
     let cleaned = response.trim();
+
+    // Strip thinking blocks that thinking models may emit despite think:false
+    cleaned = cleaned.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
 
     // Strip any leading speaker label the model may have emitted anyway
     cleaned = cleaned.replace(new RegExp(`^${agentName}\\s*:\\s*`, 'i'), '');
