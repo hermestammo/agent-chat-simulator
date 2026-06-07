@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Chat Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Agent Chat Simulator</h1>
+        <div class="settings">
+            <div class="setting-group">
+                <label for="topic">Chat Topic:</label>
+                <input type="text" id="topic" placeholder="Enter topic for discussion">
+            </div>
+            <div class="setting-group">
+                <label>Agent 1 Personality:</label>
+                <input type="text" id="agent1Name" placeholder="Name" value="Agent A">
+                <input type="text" id="agent1Trait" placeholder="Trait (e.g., optimistic, skeptical)" value="curious">
+            </div>
+            <div class="setting-group">
+                <label>Agent 2 Personality:</label>
+                <input type="text" id="agent2Name" placeholder="Name" value="Agent B">
+                <input type="text" id="agent2Trait" placeholder="Trait (e.g., optimistic, skeptical)" value="analytical">
+            </div>
+            <button id="startChat">Start Chat</button>
+            <button id="resetChat">Reset Chat</button>
+        </div>
+        <div class="chat-box" id="chatBox">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Your message (optional)" disabled>
+            <button id="sendUserMsg" disabled>Send</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
