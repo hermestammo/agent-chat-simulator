@@ -1,0 +1,9 @@
+node_modules/
+package-lock.json
+*.log
+*.backup
+*.backup2
+*.timingfix
+*.bak
+*.before_gemma
+*.fixed

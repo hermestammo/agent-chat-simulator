@@ -3,36 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent Chat Simulator</title>
+    <title>Agent Arena</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Agent Chat Simulator</h1>
-        <div class="settings">
-            <div class="setting-group">
-                <label for="topic">Chat Topic:</label>
-                <input type="text" id="topic" placeholder="Enter topic for discussion">
-            </div>
-            <div class="setting-group">
-                <label>Agent 1 Personality:</label>
-                <input type="text" id="agent1Name" placeholder="Name" value="Agent A">
-                <input type="text" id="agent1Trait" placeholder="Trait (e.g., optimistic, skeptical)" value="curious">
-            </div>
-            <div class="setting-group">
-                <label>Agent 2 Personality:</label>
-                <input type="text" id="agent2Name" placeholder="Name" value="Agent B">
-                <input type="text" id="agent2Trait" placeholder="Trait (e.g., optimistic, skeptical)" value="analytical">
-            </div>
-            <button id="startChat">Start Chat</button>
-            <button id="resetChat">Reset Chat</button>
+        <div class="header">
+            <span class="site-title">Agent Arena</span>
+            <nav class="tabs">
+                <button class="tab-btn active" data-tab="arena">Arena</button>
+                <button class="tab-btn" data-tab="web">Web Arena</button>
+                <button class="tab-btn" data-tab="agentic">Agentic AI Demo</button>
+            </nav>
+            <button id="themeToggle" class="mode-btn">Dark mode</button>
         </div>
-        <div class="chat-box" id="chatBox">
-            <!-- Chat messages will appear here -->
+
+        <!-- Shared password gate (Web Arena + Agentic tab) -->
+        <div id="passwordGate" class="password-gate hidden">
+            <div class="password-card">
+                <p class="gate-label">This area is restricted</p>
+                <input type="password" id="webPassword" placeholder="Enter password" autocomplete="off">
+                <button id="passwordSubmit">Unlock</button>
+                <p id="passwordError" class="error hidden">Incorrect password</p>
+            </div>
         </div>
-        <div class="input-area">
-            <input type="text" id="userInput" placeholder="Your message (optional)" disabled>
-            <button id="sendUserMsg" disabled>Send</button>
+
+        <!-- Arena + Web Arena chat UI -->
+        <div id="chatUI">
+            <div id="webBadge" class="web-badge hidden">Web search active</div>
+            <div class="settings">
+                <div class="setting-group">
+                    <label for="topic">Chat Topic:</label>
+                    <input type="text" id="topic" placeholder="Enter topic for discussion">
+                </div>
+                <div class="setting-group">
+                    <label>Agent 1 Personality:</label>
+                    <input type="text" id="agent1Name" placeholder="Name" value="Agent A">
+                    <input type="text" id="agent1Trait" placeholder="Trait (e.g., optimistic, skeptical)" value="curious">
+                </div>
+                <div class="setting-group">
+                    <label>Agent 2 Personality:</label>
+                    <input type="text" id="agent2Name" placeholder="Name" value="Agent B">
+                    <input type="text" id="agent2Trait" placeholder="Trait (e.g., optimistic, skeptical)" value="analytical">
+                </div>
+                <div class="setting-group controls-group">
+                    <label>Options:</label>
+                    <button id="slowModeToggle" class="mode-btn">Slow mode: Off</button>
+                </div>
+                <div class="action-btns">
+                    <button id="startChat">Start Chat</button>
+                    <button id="resetChat">Reset</button>
+                </div>
+            </div>
+            <div class="chat-box" id="chatBox"></div>
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="Jump into the conversation…" disabled>
+                <button id="sendUserMsg" disabled>Send</button>
+            </div>
+        </div>
+
+        <!-- Agentic AI Demo UI -->
+        <div id="agenticUI" class="hidden">
+            <p class="agentic-tagline">
+                An AI agent breaks a task into steps, calls tools to gather information, reasons about the results, and delivers a final answer — autonomously.
+            </p>
+            <div class="scenario-picker">
+                <button class="scenario-btn active" data-scenario="news">
+                    <div class="scenario-title">News Summary</div>
+                    <div class="scenario-desc">Agent searches the web, reads articles, and produces a structured daily briefing</div>
+                </button>
+                <button class="scenario-btn" data-scenario="lunch">
+                    <div class="scenario-title">Lunch Near You</div>
+                    <div class="scenario-desc">Agent locates you, queries nearby restaurants, checks menus and wait times, then ranks the best options</div>
+                </button>
+                <button class="scenario-btn" data-scenario="code">
+                    <div class="scenario-title">Code Creator</div>
+                    <div class="scenario-desc">Agent asks for your requirements, then assembles a custom program step by step</div>
+                </button>
+            </div>
+            <div class="demo-controls">
+                <button id="runDemo">Run Demo</button>
+                <button id="resetDemo" class="btn-secondary">Reset</button>
+            </div>
+            <div class="agent-feed" id="agentFeed">
+                <div class="feed-placeholder">Select a scenario above and click Run Demo to begin.</div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
